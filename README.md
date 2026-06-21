@@ -1,8 +1,6 @@
 # GPUClockLock
 
-A lightweight Windows utility for locking NVIDIA GPU graphics clocks to a percentage of the GPU's maximum reported clock.
-
-Unlike full overclocking utilities, this application focuses on one job: maintaining a stable graphics clock with a simple interface.
+A lightweight Windows utility for locking NVIDIA GPU graphics clocks to a percentage of the GPU's maximum reported clock. No overclocking - just stable, controlled clock speeds with a simple interface.
 
 ## Requirements
 
@@ -17,7 +15,13 @@ Unlike full overclocking utilities, this application focuses on one job: maintai
 pip install pyinstaller
 ```
 
-## Building
+## Running from source
+
+```
+python GPUClockLock.py
+```
+
+## Building an executable
 
 ```
 pyinstaller --onefile --windowed --uac-admin --icon=GPUClockLockIcon.ico --add-data "GPUClockLockIcon.ico;." --name "GPUClockLock" GPUClockLock.py
@@ -28,42 +32,19 @@ Output will be in the `dist/` folder.
 ## Usage
 
 1. Run **GPUClockLock** as Administrator
-2. Select the desired GPU
+2. Select the desired GPU from the dropdown
 3. Choose a target percentage of the GPU's maximum graphics clock
 4. Press **Lock**
 5. Press **Unlock** to restore normal NVIDIA clock management
-6. Press **Refresh** at any time to update displayed clock information
+6. Press **Refresh** to update displayed clock information
 
-Closing the application automatically restores the GPU to its default clock behavior.
-
-## Features
-
-- Detects all NVIDIA GPUs in the system
-- Lock graphics clock from 100% down to 15% in 5% increments
-- Displays current, target, minimum, and maximum clock speeds
-- Remembers last selected GPU and target percentage
-- No background monitoring or continuous polling
-- Automatically unlocks on exit
-
-## Configuration
-
-Settings are saved to:
-
-```
-%APPDATA%\GPUClockLock\
-```
+Closing the application automatically unlocks the GPU.
 
 ## Notes
 
-This application does not overclock your GPU. Clock values are derived from the maximum graphics clock reported by the NVIDIA driver.
-
-Example:
-
-| Target | Locked Clock |
-| -----: | -----------: |
-|   100% |     2100 MHz |
-|    95% |     1995 MHz |
-|    90% |     1890 MHz |
+- Clock values are derived from the maximum graphics clock reported by the NVIDIA driver
+- Target range is 100% down to 15% in 5% increments
+- Settings are saved automatically to `%APPDATA%\GPUClockLock\`
 
 ## Disclaimer
 
